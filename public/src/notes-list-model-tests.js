@@ -1,23 +1,30 @@
 function testCreateListArrayWithOneNote () {
-  var note = new Note('Note 1');
   var list = new NoteList();
-  list.add(note);
+  list.add('Note 1');
 
-  assert.isTrue(list.listArray.includes(note));
+  assert.isTrue(list.listArray[0].text === 'Note 1');
   
 };
 
 function testCreateListArrayWithTwoNotes () {
-  var note2 = new Note('Buy Eggs');
-  var note3 = new Note('Test note');
-  var errorNote = new Note('Error');
-  var list2 = new NoteList();
-  list2.add(note2);
-  list2.add(note3);
+  var list = new NoteList();
+  list.add('Buy Eggs');
+  list.add('Bacon');
 
-  assert.isTrue(list2.listArray.includes(note2));
-  assert.isTrue(list2.listArray.includes(note3));
+  assert.isTrue(list.listArray[0].text === 'Buy Eggs');
+  assert.isTrue(list.listArray[1].text === 'Bacon'); 
 };
+
+function testReturnListContents () {
+  var list = new NoteList();
+  list.add('Buy Eggs');
+  list.add('Bacon');
+  testThis = list.returnList();
+  assert.isTrue(testThis[0].text === 'Buy Eggs');
+  assert.isTrue(testThis[1].text === 'Bacon');
+}
+
 
 testCreateListArrayWithOneNote();
 testCreateListArrayWithTwoNotes();
+testReturnListContents();
