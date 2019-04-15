@@ -11,10 +11,11 @@ function testViewModelInstantiation () {
 function testViewModelReturnsHTML () {
   var noteslist = new NoteList();
   noteslist.add('Buy Eggs');
+  noteslist.add('Bacon');
 
   var listView = new ListView(noteslist);
 
-  assert.isTrue(listView.returnHTML() === "<ul><li>Buy Eggs</li></ul>");
+  assert.isTrue(listView.returnHTML() === "<ul><li>Buy Eggs</li></ul><ul><li>Bacon</li></ul>");
 }
 
 testViewModelInstantiation();
