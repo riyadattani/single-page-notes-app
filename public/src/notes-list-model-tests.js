@@ -24,6 +24,16 @@ function testReturnListContents () {
   assert.isTrue(testThis[1].text === 'Bacon');
 }
 
+function testReturnListContents () {
+  var list = new NoteList();
+  list.add('Buy Eggs');
+  list.add('Bacon');
+  testThis = list.returnList();
+  assert.isTrue(testThis[0].text === 'Buy Eggs');
+  assert.isTrue(testThis[1].text === 'Bacon');
+}
+
+
 
 testCreateListArrayWithOneNote();
 testCreateListArrayWithTwoNotes();
