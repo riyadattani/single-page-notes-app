@@ -1,0 +1,14 @@
+{
+  "name": "notes-app",
+  "version": "1.0.0",
+  "description": "single page notes app in javascript",
+  "main": "app.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "jest": "^24.7.1"
+  }
+}
