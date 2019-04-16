@@ -1,18 +1,17 @@
-
 (function(exports) {
-  function NoteController(notesList = new NoteList) {
-    this.notesList = notesList
-    this.notesList.add("Favourite drink: seltzer")
-    var listView = new ListView(this.notesList)
-    this.html = listView.returnHtml()
+  function NoteController(noteList) {
+    this.noteList = noteList
+    this.listView = new ListView(this.noteList)
+    this.html = this.listView.returnHtml()
   };
 
   NoteController.prototype.renderHtml = function() {
     return document.getElementById("app").innerHTML = this.html;
-  }
+  };
   
-  var noteController = new NoteController
+  var noteController = new NoteController(noteList = new NoteList)
   noteController.renderHtml()
 
-  exports.NoteController = NoteController;
+  exports.NoteController = NoteController
+
 })(this);
