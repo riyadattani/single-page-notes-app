@@ -8,15 +8,34 @@ function testViewModelInstantiation () {
   assert.isTrue(listView.listModel.listArray[0].text === 'Buy Eggs');
 }
 
-function testViewModelReturnsHTML () {
+function testViewModelReturnsHtmlForANote () {
+  var noteslist = new NoteList();
+  noteslist.add('Buy Eggs');
+
+  var listView = new ListView(noteslist);
+
+  assert.isTrue(listView.returnHtml() === "<ul><li>Buy Eggs</li></ul>");
+}
+
+function testViewModelReturnsHtmlForSeveralNotes () {
   var noteslist = new NoteList();
   noteslist.add('Buy Eggs');
   noteslist.add('Bacon');
 
   var listView = new ListView(noteslist);
 
-  assert.isTrue(listView.returnHTML() === "<ul><li>Buy Eggs</li></ul><ul><li>Bacon</li></ul>");
+  assert.isTrue(listView.returnHtml() === "<ul><li>Buy Eggs</li><li>Bacon</li></ul>");
+}
+
+function testViewModelReturnsHtmlNoNotes () {
+  var noteslist = new NoteList();
+
+  var listView = new ListView(noteslist);
+
+  assert.isTrue(listView.returnHtml() === "<ul></ul>");
 }
 
 testViewModelInstantiation();
-testViewModelReturnsHTML();
+testViewModelReturnsHtmlForANote();
+testViewModelReturnsHtmlForSeveralNotes();
+testViewModelReturnsHtmlNoNotes();

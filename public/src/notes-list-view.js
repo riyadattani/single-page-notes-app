@@ -4,12 +4,12 @@
     this.listModel = notesList;
   };
 
-  ListView.prototype.returnHTML = function () {
-    var html = "";
-    this.listModel.listArray.forEach(function(note){
-      html += "<ul><li>" + note.text + "</li></ul>"
+  ListView.prototype.returnHtml = function () {
+    var html = "<ul>";
+    this.listModel.returnList().forEach(function(note){
+      html += "<li>" + note.text + "</li>"
     });
-    return html
+    return html + "</ul>"
   }
 
   exports.ListView = ListView
