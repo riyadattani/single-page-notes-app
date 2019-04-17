@@ -34,6 +34,6 @@ function testControllerRendersNotesList() {
   var noteController = new NoteController(noteListDouble)
   var newHtml = noteController.renderHtml(elementDouble)
 
-  assert.isTrue(newHtml === "<ul><li>test note</li></ul>")
+  assert.isTrue(newHtml === "<ul><li>test note...</li></ul>")
 };
 testControllerRendersNotesList();

@@ -10,21 +10,21 @@ function testViewModelInstantiation () {
 
 function testViewModelReturnsHtmlForANote () {
   var noteslist = new NoteList();
-  noteslist.add('Buy Eggs');
+  noteslist.add('Shopping List: Eggs, Bacon, Sausages, Bread, Milk, Teabags, Toilet Paper');
 
   var listView = new ListView(noteslist);
 
-  assert.isTrue(listView.returnHtml() === "<ul><li>Buy Eggs</li></ul>");
+  assert.isTrue(listView.returnHtml() === "<ul><li>Shopping List: Eggs,...</li></ul>");
 }
 
 function testViewModelReturnsHtmlForSeveralNotes () {
   var noteslist = new NoteList();
-  noteslist.add('Buy Eggs');
-  noteslist.add('Bacon');
+  noteslist.add('Shopping List: Eggs, Bacon, Sausages, Bread, Milk, Teabags, Toilet Paper');
+  noteslist.add('The Rebellion: Arthur, Kim, Cosmin, James D, Riya');
 
   var listView = new ListView(noteslist);
 
-  assert.isTrue(listView.returnHtml() === "<ul><li>Buy Eggs</li><li>Bacon</li></ul>");
+  assert.isTrue(listView.returnHtml() === "<ul><li>Shopping List: Eggs,...</li><li>The Rebellion: Arthu...</li></ul>");
 }
 
 function testViewModelReturnsHtmlNoNotes () {
