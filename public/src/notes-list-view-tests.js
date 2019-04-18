@@ -27,18 +27,18 @@ var listView = new ListView(noteListDouble);
 
 function testViewModelReturnsHtmlForANote() {
 
-  assert.isTrue(listView.returnHtml() === "<a href='#notes/0'>The Rebellion: Arthu...</a>");
+  assert.isTrue(listView.returnHtml() === "<a href='#notes/0'>The Rebellion: Arthu...</a><br>");
 }
 
 function testViewModelReturnsHtmlForSeveralNotes() {
   
   var noteDouble2 = new NoteDouble("Shopping List: Eggs, Bacon, Sausages, Bread, Milk, Teabags, Toilet Paper");
   noteListDouble.add(noteDouble2.text)
-  assert.isTrue(listView.returnHtml() === "<a href='#notes/0'>The Rebellion: Arthu...</a><a href='#notes/0'>Shopping List: Eggs,...</a>");
+  assert.isTrue(listView.returnHtml() === "<a href='#notes/0'>The Rebellion: Arthu...</a><br><a href='#notes/0'>Shopping List: Eggs,...</a><br>");
 } 
 
 function testNoteHyperlinksToUrlById() {
-  assert.isTrue(listView.returnHtml() === "<a href='#notes/0'>The Rebellion: Arthu...</a>");
+  assert.isTrue(listView.returnHtml() === "<a href='#notes/0'>The Rebellion: Arthu...</a><br>");
 }
 
 testNoteHyperlinksToUrlById();
