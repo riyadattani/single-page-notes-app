@@ -1,41 +1,46 @@
-function testViewModelInstantiation () {
-  var noteslist = new NoteList();
-  noteslist.add('Buy Eggs');
-  noteslist.add('Bacon');
+//pre test doubles
+function NoteDouble(text) {
+  this.text = text;
+  this.id = 0
+};
 
-  var listView = new ListView(noteslist);
 
-  assert.isTrue(listView.listModel.listArray[0].text === 'Buy Eggs');
+function NoteListDouble() {
+  this.listArray = [];
+};
+NoteListDouble.prototype = {
+  add: function(notetext) { 
+    var noteDouble = new NoteDouble(notetext);
+    this.listArray.push(noteDouble);
+  },
+  returnList: function() { return this.listArray }
 }
 
-function testViewModelReturnsHtmlForANote () {
-  var noteslist = new NoteList();
-  noteslist.add('Shopping List: Eggs, Bacon, Sausages, Bread, Milk, Teabags, Toilet Paper');
+var noteListDouble = new NoteListDouble
+noteListDouble.add("The Rebellion: Arthur, Kim, Cosmin, James D, Riya")
 
-  var listView = new ListView(noteslist);
+var listView = new ListView(noteListDouble); 
 
-  assert.isTrue(listView.returnHtml() === "<ul><li>Shopping List: Eggs,...</li></ul>");
+//pre test doubles end
+
+//tests
+
+function testViewModelReturnsHtmlForANote() {
+
+  assert.isTrue(listView.returnHtml() === "<a href='#notes/0'>The Rebellion: Arthu...</a>");
 }
 
-function testViewModelReturnsHtmlForSeveralNotes () {
-  var noteslist = new NoteList();
-  noteslist.add('Shopping List: Eggs, Bacon, Sausages, Bread, Milk, Teabags, Toilet Paper');
-  noteslist.add('The Rebellion: Arthur, Kim, Cosmin, James D, Riya');
+function testViewModelReturnsHtmlForSeveralNotes() {
+  
+  var noteDouble2 = new NoteDouble("Shopping List: Eggs, Bacon, Sausages, Bread, Milk, Teabags, Toilet Paper");
+  noteListDouble.add(noteDouble2.text)
+  assert.isTrue(listView.returnHtml() === "<a href='#notes/0'>The Rebellion: Arthu...</a><a href='#notes/0'>Shopping List: Eggs,...</a>");
+} 
 
-  var listView = new ListView(noteslist);
-
-  assert.isTrue(listView.returnHtml() === "<ul><li>Shopping List: Eggs,...</li><li>The Rebellion: Arthu...</li></ul>");
+function testNoteHyperlinksToUrlById() {
+  assert.isTrue(listView.returnHtml() === "<a href='#notes/0'>The Rebellion: Arthu...</a>");
 }
 
-function testViewModelReturnsHtmlNoNotes () {
-  var noteslist = new NoteList();
-
-  var listView = new ListView(noteslist);
-
-  assert.isTrue(listView.returnHtml() === "<ul></ul>");
-}
-
-testViewModelInstantiation();
+testNoteHyperlinksToUrlById();
 testViewModelReturnsHtmlForANote();
 testViewModelReturnsHtmlForSeveralNotes();
-testViewModelReturnsHtmlNoNotes();

@@ -5,12 +5,14 @@
   };
 
   ListView.prototype.returnHtml = function () {
-    var html = "<ul>";
+    var html = ""
     this.listModel.returnList().forEach(function(note){
-      html += "<li>" + note.text.substring(0, 20) + "..." + "</li>"
+      html += "<a href='#notes/"+note.id+"'>"+note.text.substring(0, 20) + "..." + "</a>"
     });
-    return html + "</ul>"
+    return html
   }
 
   exports.ListView = ListView
 }) (this);
+
+

@@ -9,7 +9,8 @@ testThingIsNoteControllerObject();
 function testControllerRendersNotesList() {
   
   function NoteDouble(text) {
-    this.text = text
+    this.text = text;
+    this.id = 0
   };
 
   var noteDouble = new NoteDouble("test note")
@@ -32,6 +33,6 @@ function testControllerRendersNotesList() {
   var noteController = new NoteController(noteListDouble)
   var newHtml = noteController.renderHtml(elementDouble)
 
-  assert.isTrue(newHtml === "<ul><li>test note...</li></ul>")
+  assert.isTrue(newHtml === "<a href='#notes/0'>test note...</a>")
 };
 testControllerRendersNotesList();
