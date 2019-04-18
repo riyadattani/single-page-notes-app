@@ -8,9 +8,6 @@
   NoteController.prototype.renderHtml = function(element = document.getElementById("app")) {
     return element.innerHTML = this.html;
   };
-  
-  var noteController = new NoteController(noteList = new NoteList)
-  noteController.renderHtml()
 
   exports.NoteController = NoteController
 

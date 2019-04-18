@@ -6,8 +6,6 @@ function testThingIsNoteControllerObject() {
 testThingIsNoteControllerObject();
 
 
-
-
 function testControllerRendersNotesList() {
   
   function NoteDouble(text) {
